@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development Resources Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-12 text-center">
+            <div class="flex justify-center mb-4">
+                <div class="bg-blue-100 p-3 rounded-full">
+                    <i class="fas fa-code text-blue-600 text-3xl"></i>
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">Dev Resources Hub</h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                Curated collection of 100+ verified tools, libraries and references for web developers
+            </p>
+        </header>
+
+        <!-- Search and Filter -->
+        <div class="mb-8 bg-white p-5 rounded-xl shadow-sm">
+            <div class="relative mb-6">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    placeholder="Search by name, description or category..." 
+                    class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent shadow-sm"
+                >
+                <i class="fas fa-search absolute right-4 top-3.5 text-gray-400"></i>
+            </div>
+
+            <div class="flex flex-wrap gap-2 mb-2 overflow-x-auto pb-2 scrollbar-hide">
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="all">All Resources</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="css">CSS Tools</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="typography">Typography</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="photos">Photos & Images</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="icons">Icons</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="js">JavaScript</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="cdns">CDNs & Services</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="ui-graphics">UI Graphics</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="angular">Angular UI</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="css-animations">CSS Animations</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="css-frameworks">CSS Frameworks</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="css-methodologies">CSS Methodologies</button>
+                <button class="category-chip px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-medium" data-category="colors">Colors</button>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="mb-8 bg-white p-4 rounded-lg shadow-sm flex flex-wrap justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-gray-500 mr-2">Showing</span>
+                <span id="showingCount" class="font-medium bg-blue-100 text-blue-800 px-2 py-1 rounded">0</span>
+                <span class="text-gray-500 mx-2">of</span>
+                <span id="totalCount" class="font-medium">0</span>
+                <span class="text-gray-500 ml-2">verified resources</span>
+            </div>
+            <div class="flex items-center mt-2 sm:mt-0">
+                <span class="text-gray-500 mr-2">Last verified:</span>
+                <span class="font-medium">${new Date().toLocaleDateString()}</span>
+                <i class="fas fa-check-circle text-green-500 ml-2"></i>
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loadingState" class="text-center py-12 hidden">
+            <div class="inline-block mb-4">
+                <i class="fas fa-circle-notch text-blue-500 text-4xl loading-spinner"></i>
+            </div>
+            <h3 class="text-xl font-medium text-gray-700">Verifying resources</h3>
+            <p class="text-gray-500">Checking all links for availability...</p>
+        </div>
+
+        <!-- Resources Grid -->
+        <div id="resourcesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            <!-- Resources will be inserted here by JavaScript -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-8 border-t border-gray-200">
+            <div class="flex justify-center mb-4">
+                <a href="https://github.com/username/repo" class="btn-github" target="_blank" rel="noopener noreferrer">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7.99992 1.33331C7.12444 1.33331 6.25753 1.50575 5.4487 1.84078C4.63986 2.17581 3.90493 2.66688 3.28587 3.28593C2.03563 4.53618 1.33325 6.23187 1.33325 7.99998C1.33325 10.9466 3.24659 13.4466 5.89325 14.3333C6.22659 14.3866 6.33325 14.18 6.33325 14C6.33325 13.8466 6.33325 13.4266 6.33325 12.8733C4.48659 13.2733 4.09325 11.98 4.09325 11.98C3.78659 11.2066 3.35325 11 3.35325 11C2.74659 10.5866 3.39992 10.6 3.39992 10.6C4.06659 10.6466 4.41992 11.2866 4.41992 11.2866C4.99992 12.3 5.97992 12 6.35992 11.84C6.41992 11.4066 6.59325 11.1133 6.77992 10.9466C5.29992 10.78 3.74659 10.2066 3.74659 7.66665C3.74659 6.92665 3.99992 6.33331 4.43325 5.85998C4.36659 5.69331 4.13325 4.99998 4.49992 4.09998C4.49992 4.09998 5.05992 3.91998 6.33325 4.77998C6.85992 4.63331 7.43325 4.55998 7.99992 4.55998C8.56659 4.55998 9.13992 4.63331 9.66659 4.77998C10.9399 3.91998 11.4999 4.09998 11.4999 4.09998C11.8666 4.99998 11.6333 5.69331 11.5666 5.85998C11.9999 6.33331 12.2533 6.92665 12.2533 7.66665C12.2533 10.2133 10.6933 10.7733 9.20659 10.94C9.44659 11.1466 9.66659 11.5533 9.66659 12.1733C9.66659 13.0666 9.66659 13.7866 9.66659 14C9.66659 14.18 9.77325 14.3933 10.1133 14.3333C12.7599 13.44 14.6666 10.9466 14.6666 7.99998C14.6666 7.1245 14.4941 6.25759 14.1591 5.44876C13.8241 4.63992 13.333 3.90499 12.714 3.28593C12.0949 2.66688 11.36 2.17581 10.5511 1.84078C9.7423 1.50575 8.8754 1.33331 7.99992 1.33331V1.33331Z" fill="currentColor"></path>
+                    </svg>
+                    <span>View on Github</span>
+                </a>
+            </div>
+            <p class="text-gray-600">
+                Made with <i class="fas fa-heart text-red-500"></i> for developers worldwide
+            </p>
+            <p class="text-gray-500 text-sm mt-2">
+                Found an issue? <a href="mailto:contact@example.com" class="text-blue-500 hover:underline">Report a broken link</a> or 
+                <a href="https://github.com/username/repo/issues" class="text-blue-500 hover:underline">suggest a resource</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
