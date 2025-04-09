@@ -1,0 +1,101 @@
+/* Add smooth scrolling to the whole page */
+html {
+    scroll-behavior: smooth;
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved category chip styles */
+.category-chip {
+    transition: all 0.2s ease;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.category-chip:hover {
+    transform: scale(1.05);
+    background-color: #f3f4f6;
+}
+
+.category-chip.active {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #2563eb;
+}
+
+.category-chip.active:hover {
+    background-color: #2563eb;
+}
+
+/* Improved scrollbar styles */
+.scrollbar-hide::-webkit-scrollbar {
+    height: 4px;
+    background: transparent;
+}
+
+.scrollbar-hide::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.btn-github {
+    cursor: pointer;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    border: none;
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-radius: 100px;
+    font-weight: 800;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.825rem;
+    line-height: 1rem;
+    background-color: rgba(0, 0, 0, 0.4);
+    box-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.04),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn-github:hover {
+    box-shadow: 
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+        inset 0 0 0 1px rgba(252, 232, 3, 0.08);
+    color: #fce803;
+    transform: translateY(-0.25rem);
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.btn-github svg {
+    width: 16px;
+    height: 16px;
+}
